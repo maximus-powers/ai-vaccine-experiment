@@ -18,8 +18,8 @@ export async function parseExperimentCSV(csvContent: string): Promise<Experiment
         try {
           const data: ExperimentRow[] = [];
           
-          results.data.forEach((row: any) => {
-            if (row && row.length >= 7 && row[0] && row[1] && row[2]) {
+          results.data.forEach((row: unknown) => {
+            if (Array.isArray(row) && row.length >= 7 && row[0] && row[1] && row[2]) {
               data.push({
                 model: row[0],
                 defense_type: row[1],

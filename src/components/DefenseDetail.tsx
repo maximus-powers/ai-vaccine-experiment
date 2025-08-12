@@ -63,7 +63,7 @@ export default function DefenseDetail({ defenseKey, onBack }: DefenseDetailProps
   const defenseData = effectivenessData.filter(d => d.defense_type === defenseKey);
   
   // Prepare chart data with colors
-  const chartData = Object.values(CATEGORIES).map((category, index) => {
+  const chartData = Object.values(CATEGORIES).map((category) => {
     const categoryData = defenseData.find(d => d.category === category.key);
     return {
       category: category.name,

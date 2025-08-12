@@ -1,5 +1,17 @@
 import Papa from 'papaparse';
 
+interface ResponseCsvRow {
+  prompt: string;
+  category: string;
+  model: string;
+  defense_type: string;
+  defended_prompt: string;
+  response: string;
+  misuse_prevented: string;
+  confidence_score: string;
+  timestamp: string;
+}
+
 export interface VisualizationData {
   radar_charts: {
     [defense: string]: {
@@ -113,14 +125,14 @@ export async function loadExperimentResponses(): Promise<ExperimentResponse[]> {
           }
           
           try {
-            cachedResponseData = (results.data as any[]).map(row => ({
+            cachedResponseData = (results.data as ResponseCsvRow[]).map(row => ({
               prompt: row.prompt || '',
               category: row.category || '',
               model: row.model || '',
               defense_type: row.defense_type || '',
               defended_prompt: row.defended_prompt || '',
               response: row.response || '',
-              misuse_prevented: row.misuse_prevented === 'true' || row.misuse_prevented === 'True' || row.misuse_prevented === true,
+              misuse_prevented: row.misuse_prevented === 'true' || row.misuse_prevented === 'True',
               confidence_score: parseFloat(row.confidence_score) || 0,
               timestamp: row.timestamp || ''
             })).filter(row => row.prompt && row.category && row.model);
@@ -130,7 +142,7 @@ export async function loadExperimentResponses(): Promise<ExperimentResponse[]> {
             reject(error);
           }
         },
-        error: (error) => {
+        error: (error: unknown) => {
           reject(error);
         }
       });
