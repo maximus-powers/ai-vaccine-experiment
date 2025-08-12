@@ -38,7 +38,7 @@ export async function parseExperimentCSV(csvContent: string): Promise<Experiment
           reject(error);
         }
       },
-      error: (error) => {
+      error: (error: unknown) => {
         reject(error);
       }
     });
