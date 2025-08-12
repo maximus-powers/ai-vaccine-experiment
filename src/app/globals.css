@@ -1,26 +1,268 @@
 @import "tailwindcss";
 
 :root {
+  /* High-contrast black and white theme */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #000000;
+  --muted: #f0f0f0;
+  --muted-foreground: #666666;
+  --accent: #e5e5e5;
+  --accent-foreground: #000000;
+  --destructive: #000000;
+  --destructive-foreground: #ffffff;
+  --border: #e0e0e0;
+  --input: #f5f5f5;
+  --ring: #000000;
+  --success: #000000;
+  --warning: #000000;
+  --error: #000000;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Inconsolata', 'Roboto Mono', 'Consolas', monospace;
+  --radius: 0.5rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* High-contrast components */
+.card {
+  background: white;
+  color: black;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  border-color: #000000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+}
+
+/* Button styles */
+.btn-primary {
+  background: black;
+  color: white;
+  border: 2px solid black;
+}
+
+.btn-primary:hover {
+  background: white;
+  color: black;
+  border: 2px solid black;
+}
+
+.btn-outline {
+  background: white;
+  color: black;
+  border: 2px solid black;
+}
+
+.btn-outline:hover {
+  background: black;
+  color: white;
+  border: 2px solid black;
+}
+
+/* Badge styles with high contrast */
+.badge-high {
+  background: black;
+  color: white;
+  border: 2px solid black;
+}
+
+.badge-medium {
+  background: white;
+  color: black;
+  border: 2px solid black;
+}
+
+.badge-low {
+  background: #f5f5f5;
+  color: black;
+  border: 2px solid #ccc;
+}
+
+/* Status indicators */
+.status-prevented {
+  background: black;
+  color: white;
+  font-weight: bold;
+}
+
+.status-failed {
+  background: white;
+  color: black;
+  border: 2px solid black;
+  font-weight: bold;
+}
+
+/* Text colors with high contrast */
+.text-high-effectiveness {
+  color: black;
+  font-weight: bold;
+}
+
+.text-medium-effectiveness {
+  color: #333;
+  font-weight: 600;
+}
+
+.text-low-effectiveness {
+  color: #666;
+  font-weight: 500;
+}
+
+/* Code blocks */
+.code-block {
+  background: #f8f8f8;
+  border: 2px solid #ddd;
+  color: black;
+  font-family: var(--font-mono);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.code-block-prefix {
+  background: #f0f0f0;
+  border: 2px solid #ccc;
+  color: black;
+}
+
+.code-block-suffix {
+  background: #f5f5f5;
+  border: 2px solid #ddd;
+  color: black;
+}
+
+/* Chart containers */
+.chart-container {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Loading states */
+.loading-spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid black;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
+/* Form elements */
+input, textarea, select {
+  background: white;
+  color: black;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: black;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure all text has proper contrast */
+h1, h2, h3, h4, h5, h6 {
+  color: black;
+  font-weight: bold;
+}
+
+p, span, div {
+  color: black;
+}
+
+.text-muted {
+  color: #666;
+}
+
+.text-secondary {
+  color: #555;
+}
+
+/* Override any Tailwind classes that might cause issues */
+.text-gray-400 { color: #666 !important; }
+.text-gray-500 { color: #555 !important; }
+.text-gray-600 { color: #444 !important; }
+.text-gray-700 { color: #333 !important; }
+.text-gray-800 { color: #222 !important; }
+.text-gray-900 { color: #000 !important; }
+
+.bg-gray-50 { background-color: #fafafa !important; }
+.bg-gray-100 { background-color: #f5f5f5 !important; }
+.bg-gray-200 { background-color: #e5e5e5 !important; }
+
+/* Specific component overrides */
+.recharts-text {
+  fill: black !important;
+}
+
+.recharts-cartesian-axis-line,
+.recharts-cartesian-axis-tick-line {
+  stroke: black !important;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #ddd !important;
 }
